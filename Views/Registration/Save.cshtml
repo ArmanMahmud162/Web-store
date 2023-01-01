@@ -1,0 +1,132 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Save</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h2> Please Register First</h2>
+        <form method="POST" id="RegistrationForm">
+            <div class="form-group">
+                <label for="Name">Name:</label>
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Name">
+            </div>
+
+            <div class="form-group">
+                <label for="Phone">Phone:</label>
+                <input type="text" class="form-control" id="Phone" name="Phone" placeholder="Enter Phone No">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input type="text" class="form-control" id="Email" name="Email" placeholder="Enter Email">
+            </div>
+
+            <div class="form-group">
+                <label for="Address">Address:</label>
+                <input type="text" class="form-control" id="Address" name="Address" placeholder="Enter Address">
+            </div>
+            @*<div class="form-group">
+                    <label for="Password">Password:</label>
+                    <input type="Password" class="form-control" id="Password" name="Password" placeholder="Enter password">
+                </div>*@
+            <div class="form-group">
+                <label for="Password">Password:</label>
+                <input type="Password" class="form-control" id="Password" name="Password" placeholder="Enter Pasword">
+            </div>
+
+            <div class="form-group">
+                <label for="Confirmpass">Confirm Password:</label>
+                <input type="password" class="form-control" id="Confirmpass" name="Confirmpass" placeholder="Confirm Password">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Register</button>
+                @*<button type="button" class="btn btn-link"> <a href="@Url.Action("Registration", "Registration")">Return to log in page </a></button>*@
+
+                <a class="btn btn-primary" href="@Url.Action("Registration", "Registration")" role="button">Log In</a>
+            </div>
+            <span class="label label-success">@ViewBag.Message</span>
+        </form>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#RegistrationForm").validate({
+                rules: {
+                    Name: {
+                        required: true,
+                        minlength: 2
+
+                    },
+                    Phone: {
+                        required: true,
+                        minlength: 11,
+                        maxlength: 14
+                    },
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Address: {
+                        required: true
+                    },
+                    Password: {
+                        required: true
+                    },
+                    Confirmpass: {
+                        required: true,
+                        equalTo: "#Password"
+
+
+                    }
+
+
+                },
+                messages: {
+                    Name: {
+                        required: "Please enter a Name",
+                        minlength: "Your Name must consist of at least 2 characters"
+                    },
+                    Phone: {
+                        required: "Please enter your Phone Number",
+                        minlength: " Number must consist of at least 11 characters",
+                        Maxlength: "Number must consist of at least 14 characters"
+                    },
+                    Email: {
+                        required: "Please enter valid Email"
+                    },
+                    Address: {
+                        required: "Please enter your address"
+                    },
+                    Password: {
+                        required: "Please enter your password"
+
+                    },
+                    Confirmpass: {
+                        required: "Please Confirm  Password as same sa Password"
+
+                    }
+                }
+            });
+
+            function cleartextbox() {
+                $("input:text").val("");
+            }
+        });
+    </script>
+
+
+
+</body>
+</html>
+

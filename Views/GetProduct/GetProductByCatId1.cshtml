@@ -1,0 +1,86 @@
+﻿@using Ecom.Models
+
+@{
+    List<Product> products = ViewBag.products;
+    ViewBag.Title = "GetProductByCatId1";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@*<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewProduct</title>
+</head>
+<body>
+    <h3> View Product </h3>
+    <div>
+
+        <table class="table table-bordered table-striped table-hover">
+            <tr>
+
+                <th>Name</th>
+
+                <th>Description</th>
+
+            </tr>
+            @foreach (Product product in products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+
+                        <td>@product.Description</td>
+
+
+                    </tr>
+                }
+        </table>
+
+    </div>
+</body>
+</html>*@
+
+
+
+
+
+<!-- Banner Area Starts -->
+<section class="banner-area banner-area2 menu-bg text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1><i>Our Product</i></h1>
+                <p class="pt-2"><i>Beast kind form divide night above let moveth bearing darkness.</i></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner Area End -->
+<!-- Product Area starts -->
+<section class="product-area section-padding">
+    <div class="container">
+        <div class="row">
+            @foreach (Product product in products.Take(9))
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-food">
+                        <div class="food-img">
+                            <img src="@Url.Content(product.Image)" class="img-fluid" alt="">
+                        </div>
+                        <div class="food-content">
+                            <div class="d-flex justify-content-between">
+                                <a href="@Url.Content("~/GetProduct/ProductDetails/" + product.Id)">
+                                    <h5>@Html.DisplayFor(modelItem => product.Name)</h5>
+                                </a>
+                                <span class="style-change">@Html.DisplayFor(modelItem => product.Price)৳</span>
+                            </div>
+
+                            <p class="pt-3">@Html.Raw((product.Description.Length > 100 ? product.Description.Substring(0, 100) : product.Description)).</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+

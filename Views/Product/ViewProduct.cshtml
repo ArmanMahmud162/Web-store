@@ -1,0 +1,64 @@
+﻿@using Ecom.Models
+@{
+    ViewBag.Title = "ViewProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Product> productList = ViewBag.viewProduct;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>ViewProduct</title>
+</head>
+<body>
+    <h3> View Product </h3>
+<div>
+    <p>Type something in the input field to search the list for specific items:</p>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+
+
+    <table class="table table-bordered table-striped table-hover" id="tableid" >
+        <tr>
+
+            <th>Name</th>
+            <th>Pricc</th>
+            <th>Description</th>
+
+        </tr>
+        @foreach (Product product in productList)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Description</td>
+                <td>
+                    <a href="@Url.Action("Delete", "Product", new {@id = product.Id})">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </table>
+    <a href="@Url.Action("Save", "Product")">Create Product</a>
+</div>
+
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#tableid tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

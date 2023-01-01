@@ -1,0 +1,52 @@
+﻿@using Ecom.Models
+
+@{
+    ViewBag.Title = "OrderView";
+    List<Order> orders = ViewBag.orders;
+        Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<html>
+<head>
+    <title>OrderView</title>
+</head>
+<body>
+    <h3> View Order </h3>
+    <div>
+
+        <table class="table table-bordered table-striped table-hover">
+            <tr>
+
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Product Name</th>
+                <th>Pricc</th>
+                <th>OrderDetails</th>
+                
+
+            </tr>
+            @foreach (Order order in orders)
+            {
+                <tr>
+                    <td>@order.Name</td>
+                    <td>@order.Phone</td>
+                    <td>@order.Address</td>
+                    <td>@order.ProductName</td>
+                    <td>@order.ProductPrice</td>
+                    <td>@order.OrderDetails</td>
+                    
+                    <td>
+                        <a href="@Url.Action("Delete", "GetOrder", new { @id = order.Id })">Delete</a>
+                        <a href="@Url.Action("Edit", "GetOrder", new {@id = order.Id})">Edit</a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+        @*<a href="@Url.Action("Save","Product")">Create Product</a>*@
+    </div>
+</body>
+</html>

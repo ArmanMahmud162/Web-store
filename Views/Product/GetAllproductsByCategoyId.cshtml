@@ -1,0 +1,32 @@
+﻿@using Ecom.Models
+
+@{
+    List<Product> products = ViewBag.getProduct;
+    ViewBag.Title = "GetAllproductsByCategoyId";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>GetAllproductsByCategoyId</h2>
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+
+        <th>Name</th>
+        <th>Pricc</th>
+        <th>Description</th>
+        <th>Image</th>
+
+    </tr>
+    @*@foreach (Product product in products)
+    {
+        <tr>
+            <td>@product.Name</td>
+            <td>@product.Price</td>
+            <td>@product.Description</td>
+            <td>@product.Image</td>
+
+        </tr>
+    }*@
+</table>
+
+
+
